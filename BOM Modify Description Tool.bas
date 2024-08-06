@@ -6,6 +6,7 @@ Sub DescriptionModify()
 ÊÊÊ Dim primaryRow As Long
 ÊÊÊ Dim currentString As String
 ÊÊÊ Dim firstD As Boolean
+ÊÊÊ Dim endPos As Long
 ÊÊÊ
 ÊÊÊÊSet ws = ThisWorkbook.Sheets("BOM + Item")
 ÊÊÊ lastRow = ws.UsedRange.Rows.Count
@@ -14,6 +15,7 @@ Sub DescriptionModify()
 ÊÊÊÊÊÊÊÊÊÊÊ primaryRow = i
 ÊÊÊÊÊÊÊÊÊÊÊ currentString = ws.Cells(primaryRow, 10).Value
 ÊÊÊÊÊÊÊÊÊÊÊ firstD = True
+ÊÊÊÊÊÊÊÊÊÊÊ endPos = Len(currentString)
 
 ÊÊÊÊÊÊÊÊÊÊÊÊIf ws.Cells(primaryRow, 6).Value = "M" Then
 ÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊ If currentString <> "" Then currentString = currentString & ";"
@@ -52,6 +54,9 @@ Sub DescriptionModify()
 ÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊ End If
 ÊÊÊÊÊÊÊÊÊÊÊ Next j
 ÊÊÊÊÊÊÊÊÊÊÊ ws.Cells(primaryRow, 10).Value = currentString
+ÊÊÊÊÊÊÊÊÊÊÊ ws.Cells(primaryRow, 10).Characters(0, Len(currentString)).Font.Color = RGB(255, 0, 0)
+ÊÊÊÊÊÊÊÊÊÊÊ ws.Cells(primaryRow, 10).Characters(0, endPos).Font.Color = RGB(0, 0, 0)
+ÊÊÊÊÊÊÊÊÊÊÊ ws.Cells(primaryRow, 17).Characters(0, Len(ws.Cells(primaryRow, 17).Value)).Font.Color = RGB(255, 0, 0)
 ÊÊÊÊÊÊÊ End If
 ÊÊÊ Next i
 End Sub
