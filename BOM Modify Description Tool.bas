@@ -1,60 +1,60 @@
 Attribute VB_Name = "Module3"
 Sub DescriptionModify()
-    Dim ws As Worksheet
-    Dim lastRow As Long
-    Dim i As Long, j As Long
-    Dim primaryRow As Long
-    Dim currentString As String
-    Dim firstD As Boolean
-   
-    Set ws = ThisWorkbook.Sheets("BOM + Item")
-    lastRow = ws.UsedRange.Rows.Count
-    For i = 1 To lastRow
-        If ws.Cells(i, 12).Value = "EA (each)" Then
-            primaryRow = i
-            currentString = ws.Cells(primaryRow, 10).Value
-            firstD = True
+√ä√ä√ä Dim ws As Worksheet
+√ä√ä√ä Dim lastRow As Long
+√ä√ä√ä Dim i As Long, j As Long
+√ä√ä√ä Dim primaryRow As Long
+√ä√ä√ä Dim currentString As String
+√ä√ä√ä Dim firstD As Boolean
+√ä√ä√ä
+√ä√ä√ä√äSet ws = ThisWorkbook.Sheets("BOM + Item")
+√ä√ä√ä lastRow = ws.UsedRange.Rows.Count
+√ä√ä√ä For i = 1 To lastRow
+√ä√ä√ä√ä√ä√ä√ä If ws.Cells(i, 12).Value = "EA (each)" Then
+√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä primaryRow = i
+√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä currentString = ws.Cells(primaryRow, 10).Value
+√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä firstD = True
 
-            If ws.Cells(primaryRow, 6).Value = "M" Then
-                If currentString <> "" Then currentString = currentString & ";"
-                currentString = currentString & ws.Cells(primaryRow, 7).Value
-            End If
+√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√äIf ws.Cells(primaryRow, 6).Value = "M" Then
+√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä If currentString <> "" Then currentString = currentString & ";"
+√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä currentString = currentString & ws.Cells(primaryRow, 7).Value
+√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä End If
 
-            For j = i + 1 To lastRow
-                If ws.Cells(j, 12).Value = "EA (each)" Then
-                    Exit For
-                End If
-                If ws.Cells(j, 6).Value = "M" Then
-                    If currentString <> "" Then currentString = currentString & ";"
-                    currentString = currentString & ws.Cells(j, 7).Value
-                End If
-            Next j
+√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√äFor j = i + 1 To lastRow
+√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä If ws.Cells(j, 12).Value = "EA (each)" Then
+√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä Exit For
+√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä End If
+√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä If ws.Cells(j, 6).Value = "M" Then
+√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä If currentString <> "" Then currentString = currentString & ";"
+√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä currentString = currentString & ws.Cells(j, 7).Value
+√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä End If
+√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä Next j
 
-            If ws.Cells(primaryRow, 6).Value = "D" Then
-                If currentString <> "" Then currentString = currentString & ";"
-                If firstD Then currentString = currentString & "DWG:"
-                If firstD Then firstD = False
-                currentString = currentString & ws.Cells(primaryRow, 8).Value
-                If ws.Cells(primaryRow, 17).Value <> "" Then ws.Cells(primaryRow, 17).Value = ws.Cells(primaryRow, 17).Value & ";"
-                ws.Cells(primaryRow, 17).Value = ws.Cells(primaryRow, 17).Value & ws.Cells(primaryRow, 8).Value
-            End If
-            For j = i + 1 To lastRow
-                If ws.Cells(j, 12).Value = "EA (each)" Then
-                    Exit For
-                End If
-                If ws.Cells(j, 6).Value = "D" Then
-                    If currentString <> "" Then currentString = currentString & ";"
-                    If firstD Then currentString = currentString & "DWG:"
-                    If firstD Then firstD = False
-                    currentString = currentString & ws.Cells(j, 8).Value
-                    If ws.Cells(primaryRow, 17).Value <> "" Then ws.Cells(primaryRow, 17).Value = ws.Cells(primaryRow, 17).Value & ";"
-                    ws.Cells(primaryRow, 17).Value = ws.Cells(primaryRow, 17).Value & ws.Cells(primaryRow, 8).Value
-                End If
-            Next j
-            ws.Cells(primaryRow, 10).Value = currentString
-        End If
-    Next i
+√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√äIf ws.Cells(primaryRow, 6).Value = "D" Then
+√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä If currentString <> "" Then currentString = currentString & ";"
+√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä If firstD Then currentString = currentString & "DWG:"
+√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä If firstD Then firstD = False
+√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä currentString = currentString & ws.Cells(primaryRow, 8).Value
+√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä If ws.Cells(primaryRow, 17).Value <> "" Then ws.Cells(primaryRow, 17).Value = ws.Cells(primaryRow, 17).Value & ";"
+√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä ws.Cells(primaryRow, 17).Value = ws.Cells(primaryRow, 17).Value & ws.Cells(primaryRow, 8).Value
+√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä End If
+√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä For j = i + 1 To lastRow
+√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä If ws.Cells(j, 12).Value = "EA (each)" Then
+√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä Exit For
+√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä End If
+√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä If ws.Cells(j, 6).Value = "D" Then
+√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä If currentString <> "" Then currentString = currentString & ";"
+√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä If firstD Then currentString = currentString & "DWG:"
+√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä If firstD Then firstD = False
+√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä currentString = currentString & ws.Cells(j, 8).Value
+√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä If ws.Cells(primaryRow, 17).Value <> "" Then ws.Cells(primaryRow, 17).Value = ws.Cells(primaryRow, 17).Value & ";"
+√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä ws.Cells(primaryRow, 17).Value = ws.Cells(primaryRow, 17).Value & ws.Cells(j, 8).Value
+√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä End If
+√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä Next j
+√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä√ä ws.Cells(primaryRow, 10).Value = currentString
+√ä√ä√ä√ä√ä√ä√ä End If
+√ä√ä√ä Next i
 End Sub
 Sub DescriptionModifyButton()
-    Call DescriptionModify
+√ä√ä√ä Call DescriptionModify
 End Sub
