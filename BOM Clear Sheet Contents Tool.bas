@@ -1,16 +1,17 @@
 Attribute VB_Name = "Module4"
 Sub ClearSheet()
-    Dim ws As Worksheet
-    Dim lastRow As Long
-    Dim lastCol As Long
-   
-    Set ws = ThisWorkbook.Sheets("BOM + ITEM")
-    lastRow = ws.UsedRange.Rows.Count
-    lastCol = ws.UsedRange.Columns.Count
-   
-    ws.Range(ws.Cells(4, 1), ws.Cells(lastRow, lastCol)).ClearContents
-   
+√ä√ä√ä Dim ws As Worksheet
+√ä√ä√ä Dim lastRow As Long
+√ä√ä√ä Dim lastCol As Long
+√ä√ä√ä
+√ä√ä√ä√äSet ws = ThisWorkbook.Sheets("BOM + ITEM")
+√ä√ä√ä lastRow = ws.UsedRange.Rows.Count
+√ä√ä√ä lastCol = ws.UsedRange.Columns.Count
+√ä√ä√ä
+√ä√ä√ä√äws.Range(ws.Cells(4, 1), ws.Cells(lastRow, lastCol)).ClearContents
+√ä√ä√ä√äws.Range(ws.Cells(4, 1), ws.Cells(lastRow, lastCol)).Interior.Color = RGB(255, 255, 255)
+√ä√ä√ä
 End Sub
 Sub ClearSheetButton()
-    Call ClearSheet
+√ä√ä√ä Call ClearSheet
 End Sub
