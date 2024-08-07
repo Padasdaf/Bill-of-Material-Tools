@@ -1,65 +1,65 @@
 Attribute VB_Name = "Module3"
 Sub DescriptionModify()
-ÊÊÊ Dim ws As Worksheet
-ÊÊÊ Dim lastRow As Long
-ÊÊÊ Dim i As Long, j As Long
-ÊÊÊ Dim primaryRow As Long
-ÊÊÊ Dim currentString As String
-ÊÊÊ Dim firstD As Boolean
-ÊÊÊ Dim endPos As Long
-ÊÊÊ
-ÊÊÊÊSet ws = ThisWorkbook.Sheets("BOM + Item")
-ÊÊÊ lastRow = ws.UsedRange.Rows.Count
-ÊÊÊ For i = 1 To lastRow
-ÊÊÊÊÊÊÊ If ws.Cells(i, 12).Value = "EA (each)" Then
-ÊÊÊÊÊÊÊÊÊÊÊ primaryRow = i
-ÊÊÊÊÊÊÊÊÊÊÊ currentString = ws.Cells(primaryRow, 10).Value
-ÊÊÊÊÊÊÊÊÊÊÊ firstD = True
-ÊÊÊÊÊÊÊÊÊÊÊ endPos = Len(currentString)
+    Dim ws As Worksheet
+    Dim lastRow As Long
+    Dim i As Long, j As Long
+    Dim primaryRow As Long
+    Dim currentString As String
+    Dim firstD As Boolean
+    Dim endPos As Long
 
-ÊÊÊÊÊÊÊÊÊÊÊÊIf ws.Cells(primaryRow, 6).Value = "M" Then
-ÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊ If currentString <> "" Then currentString = currentString & ";"
-ÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊ currentString = currentString & ws.Cells(primaryRow, 7).Value
-ÊÊÊÊÊÊÊÊÊÊÊ End If
+    Set ws = ThisWorkbook.Sheets("BOM + Item")
+    lastRow = ws.UsedRange.Rows.Count
+    For i = 1 To lastRow
+        If ws.Cells(i, 12).Value = "EA (each)" Then
+            primaryRow = i
+            currentString = ws.Cells(primaryRow, 10).Value
+            firstD = True
+            endPos = Len(currentString)
 
-ÊÊÊÊÊÊÊÊÊÊÊÊFor j = i + 1 To lastRow
-ÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊ If ws.Cells(j, 12).Value = "EA (each)" Then
-ÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊ Exit For
-ÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊ End If
-ÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊ If ws.Cells(j, 6).Value = "M" Then
-ÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊ If currentString <> "" Then currentString = currentString & ";"
-ÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊ currentString = currentString & ws.Cells(j, 7).Value
-ÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊ End If
-ÊÊÊÊÊÊÊÊÊÊÊ Next j
+            If ws.Cells(primaryRow, 6).Value = "M" Then
+                If currentString <> "" Then currentString = currentString & ";"
+                currentString = currentString & ws.Cells(primaryRow, 7).Value
+            End If
 
-ÊÊÊÊÊÊÊÊÊÊÊÊIf ws.Cells(primaryRow, 6).Value = "D" Then
-ÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊ If currentString <> "" Then currentString = currentString & ";"
-ÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊ If firstD Then currentString = currentString & "DWG:"
-ÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊ If firstD Then firstD = False
-ÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊ currentString = currentString & ws.Cells(primaryRow, 8).Value
-ÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊ If ws.Cells(primaryRow, 17).Value <> "" Then ws.Cells(primaryRow, 17).Value = ws.Cells(primaryRow, 17).Value & ";"
-ÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊ ws.Cells(primaryRow, 17).Value = ws.Cells(primaryRow, 17).Value & ws.Cells(primaryRow, 8).Value
-ÊÊÊÊÊÊÊÊÊÊÊ End If
-ÊÊÊÊÊÊÊÊÊÊÊ For j = i + 1 To lastRow
-ÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊ If ws.Cells(j, 12).Value = "EA (each)" Then
-ÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊ Exit For
-ÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊ End If
-ÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊ If ws.Cells(j, 6).Value = "D" Then
-ÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊ If currentString <> "" Then currentString = currentString & ";"
-ÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊ If firstD Then currentString = currentString & "DWG:"
-ÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊ If firstD Then firstD = False
-ÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊ currentString = currentString & ws.Cells(j, 8).Value
-ÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊ If ws.Cells(primaryRow, 17).Value <> "" Then ws.Cells(primaryRow, 17).Value = ws.Cells(primaryRow, 17).Value & ";"
-ÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊ ws.Cells(primaryRow, 17).Value = ws.Cells(primaryRow, 17).Value & ws.Cells(j, 8).Value
-ÊÊÊÊÊÊÊÊÊÊÊÊÊÊÊ End If
-ÊÊÊÊÊÊÊÊÊÊÊ Next j
-ÊÊÊÊÊÊÊÊÊÊÊ ws.Cells(primaryRow, 10).Value = currentString
-ÊÊÊÊÊÊÊÊÊÊÊ ws.Cells(primaryRow, 10).Characters(0, Len(currentString)).Font.Color = RGB(255, 0, 0)
-ÊÊÊÊÊÊÊÊÊÊÊ ws.Cells(primaryRow, 10).Characters(0, endPos).Font.Color = RGB(0, 0, 0)
-ÊÊÊÊÊÊÊÊÊÊÊ ws.Cells(primaryRow, 17).Characters(0, Len(ws.Cells(primaryRow, 17).Value)).Font.Color = RGB(255, 0, 0)
-ÊÊÊÊÊÊÊ End If
-ÊÊÊ Next i
+            For j = i + 1 To lastRow
+                If ws.Cells(j, 12).Value = "EA (each)" Then
+                    Exit For
+                End If
+                If ws.Cells(j, 6).Value = "M" Then
+                    If currentString <> "" Then currentString = currentString & ";"
+                    currentString = currentString & ws.Cells(j, 7).Value
+                End If
+            Next j
+
+            If ws.Cells(primaryRow, 6).Value = "D" Then
+                If currentString <> "" Then currentString = currentString & ";"
+                If firstD Then currentString = currentString & "DWG:"
+                If firstD Then firstD = False
+                currentString = currentString & ws.Cells(primaryRow, 8).Value
+                If ws.Cells(primaryRow, 17).Value <> "" Then ws.Cells(primaryRow, 17).Value = ws.Cells(primaryRow, 17).Value & ";"
+                ws.Cells(primaryRow, 17).Value = ws.Cells(primaryRow, 17).Value & ws.Cells(primaryRow, 8).Value
+            End If
+            For j = i + 1 To lastRow
+                If ws.Cells(j, 12).Value = "EA (each)" Then
+                    Exit For
+                End If
+                If ws.Cells(j, 6).Value = "D" Then
+                    If currentString <> "" Then currentString = currentString & ";"
+                    If firstD Then currentString = currentString & "DWG:"
+                    If firstD Then firstD = False
+                    currentString = currentString & ws.Cells(j, 8).Value
+                    If ws.Cells(primaryRow, 17).Value <> "" Then ws.Cells(primaryRow, 17).Value = ws.Cells(primaryRow, 17).Value & ";"
+                    ws.Cells(primaryRow, 17).Value = ws.Cells(primaryRow, 17).Value & ws.Cells(j, 8).Value
+                End If
+            Next j
+            ws.Cells(primaryRow, 10).Value = currentString
+            ws.Cells(primaryRow, 10).Characters(0, Len(currentString)).Font.Color = RGB(255, 0, 0)
+            ws.Cells(primaryRow, 10).Characters(0, endPos).Font.Color = RGB(0, 0, 0)
+            ws.Cells(primaryRow, 17).Characters(0, Len(ws.Cells(primaryRow, 17).Value)).Font.Color = RGB(255, 0, 0)
+        End If
+    Next i
 End Sub
 Sub DescriptionModifyButton()
-ÊÊÊ Call DescriptionModify
+    Call DescriptionModify
 End Sub
